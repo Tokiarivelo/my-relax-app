@@ -1,0 +1,26 @@
+{
+  "name": "@my-relax-app/my-relax-app-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "my-relax-app-e2e",
+    "implicitDependencies": [
+      "my-relax-app"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{projectRoot}/test-output/jest/coverage"
+        ],
+        "options": {
+          "jestConfig": "apps/my-relax-app-e2e/jest.config.ts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "my-relax-app:build"
+        ]
+      }
+    }
+  }
+}
