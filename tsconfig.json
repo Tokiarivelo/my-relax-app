@@ -8,6 +8,84 @@
     },
     {
       "path": "./apps/my-relax-app"
+    },
+    {
+      "path": "./auth-e2e"
+    },
+    {
+      "path": "./auth"
+    },
+    {
+      "path": "./apps/services/auth-e2e"
+    },
+    {
+      "path": "./apps/services/auth"
+    },
+    {
+      "path": "./apps/services/location-e2e"
+    },
+    {
+      "path": "./apps/services/location"
+    },
+    {
+      "path": "./apps/services/user-e2e"
+    },
+    {
+      "path": "./apps/services/user"
+    },
+    {
+      "path": "./apps/api-gateway-e2e"
+    },
+    {
+      "path": "./apps/api-gateway"
+    },
+    {
+      "path": "./apps/services/notification-e2e"
+    },
+    {
+      "path": "./apps/services/notification"
+    },
+    {
+      "path": "./apps/services/payment-e2e"
+    },
+    {
+      "path": "./apps/services/payment"
+    },
+    {
+      "path": "./apps/services/review-e2e"
+    },
+    {
+      "path": "./apps/services/review"
+    },
+    {
+      "path": "./apps/services/invoice-e2e"
+    },
+    {
+      "path": "./apps/services/invoice"
+    },
+    {
+      "path": "./apps/services/search-e2e"
+    },
+    {
+      "path": "./apps/services/search"
+    },
+    {
+      "path": "./apps/front-end/admin-e2e"
+    },
+    {
+      "path": "./apps/front-end/admin"
+    },
+    {
+      "path": "./apps/front-end/customer-e2e"
+    },
+    {
+      "path": "./apps/front-end/customer"
+    },
+    {
+      "path": "./apps/services/chat-bot-e2e"
+    },
+    {
+      "path": "./apps/services/chat-bot"
     }
   ]
 }

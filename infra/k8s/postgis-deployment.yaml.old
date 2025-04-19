@@ -1,0 +1,60 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgis-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgis
+  template:
+    metadata:
+      labels:
+        app: postgis
+    spec:
+      containers:
+        - name: postgis
+          image: postgis/postgis:15-3.3
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "relax_admin"
+            - name: POSTGRES_PASSWORD
+              value: "relax_pass"
+            - name: POSTGRES_DB
+              value: "relax_place"
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgis-persistent-storage
+      volumes:
+        - name: postgis-persistent-storage
+          persistentVolumeClaim:
+            claimName: postgis-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgis
+spec:
+  type: ClusterIP
+  selector:
+    app: postgis
+  ports:
+    - port: 5432
+      targetPort: 5432
+
+

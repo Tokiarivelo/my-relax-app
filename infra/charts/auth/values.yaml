@@ -1,0 +1,14 @@
+replicaCount: 1
+
+image:
+  repository: auth
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3000
+
+env:
+  JWT_SECRET: supersecret
+  DB_URL: postgres://relax_admin:relax_pass@postgis:5432/relax_place

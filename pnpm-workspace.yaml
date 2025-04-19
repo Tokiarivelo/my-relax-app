@@ -1,2 +1,9 @@
 packages:
-  - "apps/*"
+  - 'apps/*'
+  - 'apps/services/*'
+  - 'apps/front-end/*'
+onlyBuiltDependencies:
+  - '@nestjs/core'
+  - '@parcel/watcher'
+  - '@swc/core'
+  - 'nx'

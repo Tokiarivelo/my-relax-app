@@ -1,0 +1,78 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  helm:
+    releases:
+      - name: postgis
+        chartPath: infra/charts/postgis
+        version: 0.1.0
+        setValues:
+          postgres.user: relax_admin
+          postgres.password: relax_pass
+          postgres.db: relax_place
+          persistence.size: 5Gi
+        namespace: relaxplace
+        createNamespace: true
+
+      - name: pgadmin
+        chartPath: infra/charts/pgadmin
+        version: 0.1.0
+        setValues:
+          pgadmin.email: admin@relaxplace.com
+          pgadmin.password: admin123
+          service.nodePort: 30080
+        namespace: relaxplace
+
+      - name: redis
+        chartPath: infra/charts/redis
+        version: 0.1.0
+        namespace: relaxplace
+
+      - name: auth
+        chartPath: infra/charts/auth
+        valuesFiles:
+          - infra/charts/auth/values.yaml
+        namespace: relaxplace
+
+# Optionnel : profils selon l’environnement (dev, staging, prod)
+profiles:
+  - name: dev
+    activation:
+      - command: dev
+    deploy:
+      helm:
+        releases:
+          - name: postgis
+            chartPath: infra/charts/postgis
+            version: 0.1.0
+            namespace: relaxplace
+          - name: pgadmin
+            chartPath: infra/charts/pgadmin
+            version: 0.1.0
+            namespace: relaxplace
+          - name: redis
+            chartPath: infra/charts/redis
+            version: 0.1.0
+            namespace: relaxplace
+          - name: auth
+            chartPath: infra/charts/auth
+            version: 0.1.0
+            namespace: relaxplace
+
+build:
+  local:
+    push: false
+  artifacts:
+    - image: auth # image docker
+      context: apps/services/auth # chemin du source
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts' # path à watcher
+            dest: .
+
+    - image: api-gateway
+      context: apps/api-gateway
+      docker:
+        dockerfile: Dockerfile

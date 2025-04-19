@@ -1,0 +1,16 @@
+services:
+  postgis:
+    image: postgis/postgis:15-3.3
+    container_name: postgis
+    restart: always
+    environment:
+      POSTGRES_USER: relax_admin
+      POSTGRES_PASSWORD: relax_pass
+      POSTGRES_DB: relax_place
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+
+volumes:
+  postgis_data:

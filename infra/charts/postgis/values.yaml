@@ -1,0 +1,20 @@
+replicaCount: 1
+
+image:
+  repository: postgis/postgis
+  tag: "15-3.3"
+  pullPolicy: IfNotPresent
+
+postgres:
+  user: relax_admin
+  password: relax_pass
+  db: relax_place
+
+service:
+  type: ClusterIP
+  port: 5432
+
+persistence:
+  enabled: true
+  size: 5Gi
+  storageClass: ""
