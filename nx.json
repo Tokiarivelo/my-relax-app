@@ -68,7 +68,9 @@
         "apps/services/review-e2e/**/*",
         "apps/services/invoice-e2e/**/*",
         "apps/services/search-e2e/**/*",
-        "apps/services/chat-bot-e2e/**/*"
+        "apps/services/chat-bot-e2e/**/*",
+        "apps/services/notifications-e2e/**/*",
+        "apps/services/places-e2e/**/*"
       ]
     },
     {

@@ -86,6 +86,18 @@
     },
     {
       "path": "./apps/services/chat-bot"
+    },
+    {
+      "path": "./apps/services/notifications-e2e"
+    },
+    {
+      "path": "./apps/services/notifications"
+    },
+    {
+      "path": "./apps/services/places-e2e"
+    },
+    {
+      "path": "./apps/services/places"
     }
   ]
 }
