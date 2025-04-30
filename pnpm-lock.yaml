@@ -162,6 +162,9 @@ importers:
       jest-environment-node:
         specifier: ^29.7.0
         version: 29.7.0
+      jsonc-eslint-parser:
+        specifier: ^2.1.0
+        version: 2.4.0
       nx:
         specifier: 20.8.0
         version: 20.8.0(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.17))(@swc/types@0.1.21)(typescript@5.7.3))(@swc/core@1.5.29(@swc/helpers@0.5.17))
@@ -211,13 +214,27 @@ importers:
 
   apps/front-end/admin-e2e: {}
 
-  apps/my-relax-app: {}
+  apps/front-end/customer:
+    dependencies:
+      next:
+        specifier: ~15.2.4
+        version: 15.2.5(@babel/core@7.26.10)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.86.3)
+      react:
+        specifier: 19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
 
-  apps/my-relax-app-e2e: {}
+  apps/front-end/customer-e2e: {}
 
   apps/services/auth: {}
 
   apps/services/auth-e2e: {}
+
+  apps/services/chat-bot: {}
+
+  apps/services/chat-bot-e2e: {}
 
   apps/services/invoice: {}
 
@@ -231,9 +248,17 @@ importers:
 
   apps/services/notification-e2e: {}
 
+  apps/services/notifications: {}
+
+  apps/services/notifications-e2e: {}
+
   apps/services/payment: {}
 
   apps/services/payment-e2e: {}
+
+  apps/services/places: {}
+
+  apps/services/places-e2e: {}
 
   apps/services/review: {}
 
@@ -246,6 +271,21 @@ importers:
   apps/services/user: {}
 
   apps/services/user-e2e: {}
+
+  libs/hared/shared-dtos:
+    dependencies:
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+
+  libs/hared/shared-prisma:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^10.0.0
+        version: 10.4.17(reflect-metadata@0.1.14)(rxjs@7.8.2)
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
 
 packages:
 

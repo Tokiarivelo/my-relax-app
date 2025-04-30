@@ -98,6 +98,12 @@
     },
     {
       "path": "./apps/services/places"
+    },
+    {
+      "path": "./libs/hared/shared-prisma"
+    },
+    {
+      "path": "./libs/hared/shared-dtos"
     }
   ]
 }
