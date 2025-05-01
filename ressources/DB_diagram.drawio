@@ -8,7 +8,7 @@
           <mxGeometry x="190" y="120" width="200" height="150" as="geometry" />
         </mxCell>
         <mxCell id="3" value="places&#xa;----&#xa;id: UUID (PK)&#xa;owner_id: UUID (FK users.id)&#xa;title: VARCHAR(255) NOT NULL&#xa;description: TEXT&#xa;address: TEXT&#xa;latitude: DECIMAL(9,6)&#xa;longitude: DECIMAL(9,6)&#xa;price: DECIMAL(10,2)&#xa;transport_info: TEXT&#xa;created_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="510" y="-180" width="200" height="210" as="geometry" />
+          <mxGeometry x="510" y="-160" width="200" height="210" as="geometry" />
         </mxCell>
         <mxCell id="4" value="place_images&#xa;----&#xa;id: UUID (PK)&#xa;place_id: UUID (FK places.id)&#xa;url: TEXT NOT NULL&#xa;is_cover: BOOLEAN DEFAULT FALSE" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="510" y="260" width="200" height="100" as="geometry" />
