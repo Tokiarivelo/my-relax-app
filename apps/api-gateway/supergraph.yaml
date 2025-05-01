@@ -1,0 +1,5 @@
+# supergraph.yaml
+subgraphs:
+  - name: auth
+    routing_url: http://localhost:4001/graphql
+  # …

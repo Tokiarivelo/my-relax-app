@@ -38,6 +38,8 @@ async function bootstrap() {
         { name: 'auth', url: envConfig.AUTH_URL },
         // …
       ],
+      // tous les X ms, on ré-introspecte
+      pollIntervalInMs: 60_000,
     }),
   });
 
@@ -55,8 +57,6 @@ async function bootstrap() {
       context: async ({ req }) => ({ headers: req.headers }),
     })
   );
-
-  const { schema } = await gateway.load();
 
   // Subscriptions WS
   useServer(
