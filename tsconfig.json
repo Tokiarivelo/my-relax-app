@@ -4,18 +4,6 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/my-relax-app-e2e"
-    },
-    {
-      "path": "./apps/my-relax-app"
-    },
-    {
-      "path": "./auth-e2e"
-    },
-    {
-      "path": "./auth"
-    },
-    {
       "path": "./apps/services/auth-e2e"
     },
     {
@@ -100,10 +88,10 @@
       "path": "./apps/services/places"
     },
     {
-      "path": "./libs/hared/shared-prisma"
+      "path": "./libs/shared/shared-prisma"
     },
     {
-      "path": "./libs/hared/shared-dtos"
+      "path": "./libs/shared/shared-dtos"
     }
   ]
 }

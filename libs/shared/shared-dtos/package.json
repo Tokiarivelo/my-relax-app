@@ -6,6 +6,9 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "scripts": {
+    "codegen:dtos": "graphql-codegen --config codegen.yml"
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {

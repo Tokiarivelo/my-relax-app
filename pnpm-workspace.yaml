@@ -2,7 +2,7 @@ packages:
   - 'apps/*'
   - 'apps/services/*'
   - 'apps/front-end/*'
-  - 'libs/hared/*'
+  - 'libs/shared/*'
 onlyBuiltDependencies:
   - '@nestjs/core'
   - '@parcel/watcher'

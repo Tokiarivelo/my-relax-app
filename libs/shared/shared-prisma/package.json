@@ -14,6 +14,7 @@
       "default": "./dist/index.js"
     }
   },
+  "scripts": {},
   "nx": {
     "name": "shared-prisma",
     "targets": {
@@ -23,12 +24,12 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "dist/libs/hared/shared-prisma",
-          "tsConfig": "libs/hared/shared-prisma/tsconfig.lib.json",
-          "packageJson": "libs/hared/shared-prisma/package.json",
-          "main": "libs/hared/shared-prisma/src/index.ts",
+          "outputPath": "dist/libs/shared/shared-prisma",
+          "tsConfig": "libs/shared/shared-prisma/tsconfig.lib.json",
+          "packageJson": "libs/shared/shared-prisma/package.json",
+          "main": "libs/shared/shared-prisma/src/index.ts",
           "assets": [
-            "libs/hared/shared-prisma/*.md"
+            "libs/shared/shared-prisma/*.md"
           ]
         }
       }

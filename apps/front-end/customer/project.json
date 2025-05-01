@@ -1,0 +1,51 @@
+{
+  "name": "@my-relax-app/customer",
+  "root": "apps/front-end/customer",
+  "sourceRoot": "apps/front-end/customer",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "root": "apps/front-end/customer",
+        "outputPath": "dist/apps/front-end/customer"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractCss": true,
+          "sourceMap": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "options": {
+        "buildTarget": "@my-relax-app/customer:build",
+        "dev": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "@my-relax-app/customer:build:production",
+          "dev": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/front-end/customer/**/*.{js,ts,jsx,tsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/apps/front-end/customer"],
+      "options": {
+        "jestConfig": "apps/front-end/customer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

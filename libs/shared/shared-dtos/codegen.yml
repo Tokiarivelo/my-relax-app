@@ -1,0 +1,15 @@
+overwrite: true
+schema: http://localhost:4000/graphql   # ton endpoint Gateway
+generates:
+  /src/lib/dtos.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-class-validator
+    config:
+      # génère des classes avec décorateurs class-validator
+      classValidator: true
+      # transforme les noms comme CreateUserInput → CreateUserDto
+      namingConvention:
+        typeNames: pascal-case#pascalCase
+        inputTypeSuffix: Dto
