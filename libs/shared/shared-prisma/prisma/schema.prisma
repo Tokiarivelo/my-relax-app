@@ -26,9 +26,7 @@ model User {
   reviews   Review[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
   Payment Payment[]
-
   Place Place[]
 }
 

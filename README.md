@@ -121,6 +121,16 @@ my-relax-app/
 ```
 
 # Lancement du service
+## Front next
+You can serve a Next.js application my-new-app for development:
+```sh
+nx dev my-new-app
+```
+To serve a Next.js application for production:
+```sh
+nx start my-new-app
+```
+
 ## Apollo gateway
 ```sh
 pnpm nx serve api-gateway
@@ -216,6 +226,14 @@ payments
 - tags → place_tags: One-to-Many (tag_id FK in place_tags references tags.id)
 - reservations → payments: One-to-Many (reservation_id FK in payments references reservations.id)
  ```
+
+ # MySql
+ ## local docker info
+ | Service    | URL                     | Login info                         |
+| ---------- | ----------------------- | ---------------------------------- |
+| MySQL      | `localhost:3306`        | user: `myuser`, pass: `mypassword` |
+| phpMyAdmin | `http://localhost:8080` | user: `root`, pass: `rootpassword` |
+
 
 # Prisma
 ## Set up prisma

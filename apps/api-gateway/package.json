@@ -7,6 +7,13 @@
       "@my-relax-app/auth"
     ],
     "targets": {
+      "compose": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "APOLLO_ELV2_LICENSE=accept pnpm dlx @apollo/rover supergraph compose --config supergraph.yaml > supergraph.graphql",
+          "args": "--client-timeout=100000"
+        }
+      },
       "build": {
         "executor": "nx:run-commands",
         "options": {
@@ -31,7 +38,8 @@
         ],
         "options": {
           "buildTarget": "@my-relax-app/api-gateway:build",
-          "runBuildTargetDependencies": false
+          "runBuildTargetDependencies": false,
+          "watch": true
         },
         "configurations": {
           "development": {

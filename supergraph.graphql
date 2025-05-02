@@ -1,0 +1,23 @@
+schema
+  @core(feature: "https://specs.apollo.dev/core/v0.1")
+  @core(feature: "https://specs.example.com/example/v1.0") {
+  query: Query
+}
+
+type Query {
+  field: Int @example
+}
+
+enum join__Graph {
+  PRODUCTS @join__graph(name: "products", url: "http://localhost:4002/graphql")
+  REVIEWS @join__graph(name: "reviews", url: "http://localhost:4003/graphql")
+  USERS @join__graph(name: "users", url: "http://localhost:4001/graphql")
+}
+
+directive @example on FIELD_DEFINITION
+
+directive @core(feature: String!, as: String) repeatable on SCHEMA
+
+# 3. Directives Join (subgraphs metadata)
+################################################################
+directive @join__graph(name: String!, url: String!) on ENUM_VALUE

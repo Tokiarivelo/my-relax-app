@@ -1,10 +1,11 @@
 packages:
-  - 'apps/*'
-  - 'apps/services/*'
-  - 'apps/front-end/*'
-  - 'libs/shared/*'
+  - apps/*
+  - apps/services/*
+  - apps/front-end/*
+  - libs/shared/*
 onlyBuiltDependencies:
   - '@nestjs/core'
   - '@parcel/watcher'
+  - '@prisma/client'
   - '@swc/core'
-  - 'nx'
+  - nx

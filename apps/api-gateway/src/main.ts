@@ -2,7 +2,11 @@
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import express from 'express';
-import { ApolloGateway, IntrospectAndCompose } from '@apollo/gateway';
+import {
+  ApolloGateway,
+  IntrospectAndCompose,
+  RemoteGraphQLDataSource,
+} from '@apollo/gateway';
 import { ApolloServer } from '@apollo/server';
 import { useServer } from 'graphql-ws/use/ws';
 import { createServer } from 'http';
@@ -13,6 +17,35 @@ import { expressMiddleware } from '@apollo/server/express4';
 
 import { AppModule } from './app/app.module';
 import { envConfig } from './config/env-config';
+import { readFileSync } from 'fs';
+
+async function createGateway() {
+  let supergraphSdl;
+
+  try {
+    // Essaye l’introspection live
+    const gatewayTemp = new ApolloGateway({
+      supergraphSdl: new IntrospectAndCompose({
+        subgraphs: [
+          { name: 'auth', url: 'http://localhost:4001/graphql' },
+          // …
+        ],
+        // pas de polling ici
+      }),
+    });
+    supergraphSdl = await gatewayTemp.load();
+  } catch (e) {
+    console.warn(
+      '⚠️  Introspection failed, falling back to static supergraph :>>>',
+      e
+    );
+    supergraphSdl = readFileSync('supergraph.graphql', 'utf8');
+
+    console.log('supergraphSdl :>>> ', supergraphSdl);
+  }
+
+  return new ApolloGateway({ supergraphSdl });
+}
 
 async function bootstrap() {
   const expressApp = express();
@@ -32,16 +65,7 @@ async function bootstrap() {
   });
 
   // Crée le gateway
-  const gateway = new ApolloGateway({
-    supergraphSdl: new IntrospectAndCompose({
-      subgraphs: [
-        { name: 'auth', url: envConfig.AUTH_URL },
-        // …
-      ],
-      // tous les X ms, on ré-introspecte
-      pollIntervalInMs: 60_000,
-    }),
-  });
+  const gateway = await createGateway();
 
   // Instancie Apollo v4
   const server = new ApolloServer({ gateway });
