@@ -92,6 +92,15 @@
     },
     {
       "path": "./libs/shared/shared-dtos"
+    },
+    {
+      "path": "./libs/shared/shared-ui"
+    },
+    {
+      "path": "./apps/front-end/auth-app-e2e"
+    },
+    {
+      "path": "./apps/front-end/auth-app"
     }
   ]
 }
