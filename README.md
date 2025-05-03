@@ -242,6 +242,12 @@ Set up your Prisma ORM project by creating your Prisma Schema file with the foll
 ```sh
 npx prisma init --datasource-provider mysql --output ../generated/prisma
 ```
+
+Génération du prisma client
+```sh
+ pnpm nx prisma-generate shared-prisma
+ ```
+
 ### 📄 Prisma Schema Example (shared/prisma/schema.prisma)
 
 ```prisma

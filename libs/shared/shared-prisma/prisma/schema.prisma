@@ -44,7 +44,7 @@ model Place {
   description String
   category    String
   price       Float
-  location    Unsupported("geometry(Point,4326)")
+  location Unsupported("POINT")
   provider    User          @relation(fields: [providerId], references: [id])
   providerId  String
   images      PlaceImage[]
