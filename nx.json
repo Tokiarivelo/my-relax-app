@@ -57,13 +57,11 @@
       "exclude": [
         "apps/my-relax-app-e2e/**/*",
         "auth-e2e/**/*",
-        "auth-e2e/**/*",
         "apps/services/auth-e2e/**/*",
         "apps/services/location-e2e/**/*",
         "apps/services/user-e2e/**/*",
         "apps/api-gateway-e2e/**/*",
         "apps/services/notification-e2e/**/*",
-        "apps/api-gateway-e2e/**/*",
         "apps/services/payment-e2e/**/*",
         "apps/services/review-e2e/**/*",
         "apps/services/invoice-e2e/**/*",
@@ -102,6 +100,14 @@
         "watchDepsTargetName": "watch-deps",
         "buildDepsTargetName": "build-deps",
         "typecheckTargetName": "typecheck"
+      }
+    },
+    {
+      "plugin": "@nx/rollup/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "buildDepsTargetName": "build-deps",
+        "watchDepsTargetName": "watch-deps"
       }
     }
   ],

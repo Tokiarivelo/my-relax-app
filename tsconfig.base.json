@@ -16,6 +16,11 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["development"]
+    "customConditions": ["development"],
+    "declaration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@my-relax-app/shared-ui": ["libs/shared/shared-ui/src/index.ts"]
+    }
   }
 }
