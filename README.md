@@ -4,12 +4,11 @@
 
 ✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/node?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/node?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
 
 ## Finish your CI setup
 
 [Click here to finish setting up your workspace!](https://cloud.nx.app/connect/usbiE59lLs)
-
 
 ## Run tasks
 
@@ -61,11 +60,9 @@ pnpm nx g @nx/nest:lib shared/shared-prisma --buildable
 
 Install package into specific service / libs
 
-
 You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
 
 [Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
 
 [Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
@@ -79,12 +76,13 @@ Nx Console is an editor extension that enriches your developer experience. It le
 
 Learn more:
 
-- [Learn more about this workspace setup](https://nx.dev/nx-api/node?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
+- [Learn more about this workspace setup](https://nx.dev/nx-api/node?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 - [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 - [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 - [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
 And join the Nx community:
+
 - [Discord](https://go.nx.dev/community)
 - [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
 - [Our Youtube channel](https://www.youtube.com/@nxdevtools)
@@ -121,26 +119,35 @@ my-relax-app/
 ```
 
 # Lancement du service
+
 ## Front next
+
 You can serve a Next.js application my-new-app for development:
+
 ```sh
 nx dev my-new-app
 ```
+
 To serve a Next.js application for production:
+
 ```sh
 nx start my-new-app
 ```
 
 ## Apollo gateway
+
 ```sh
 pnpm nx serve api-gateway
 ```
 
 # DB
+
 ## Schema
-![DB](./ressources/db-schema.png "Database schema")
+
+![DB](./ressources/db-schema.png 'Database schema')
 
 ## Details
+
 ```sql
 users
 - id: UUID (PK)
@@ -225,18 +232,87 @@ payments
 - places → place_tags: One-to-Many (place_id FK in place_tags references places.id)
 - tags → place_tags: One-to-Many (tag_id FK in place_tags references tags.id)
 - reservations → payments: One-to-Many (reservation_id FK in payments references reservations.id)
- ```
+```
 
- # MySql
- ## local docker info
- | Service    | URL                     | Login info                         |
+### lancement de la BD par docker compose
+
+```sh
+ docker compose up mysql-db mysql-client
+```
+
+## Explication de base
+
+### 🧬 "generate": "prisma generate"
+
+- **Fonction** : Génère le client Prisma TypeScript à partir du fichier `schema.prisma`.
+
+- **Utilité** : Après avoir modifié ton schéma (ex. : modèles, champs), cette commande crée ou met à jour les types TypeScript pour interagir avec ta base de données.
+
+- **À exécuter quand ?** : Après chaque modification de schema.prisma.
+
+### 🧱 "migrate": "prisma migrate dev --name init"
+
+- **Fonction** : Crée une migration SQL + applique la migration à la base de données de développement.
+
+- **Utilité** : Maintient un historique versionné de ton schéma DB dans /prisma/migrations.
+
+- **À exécuter quand ?** : Quand tu fais des changements dans le schéma Prisma et que tu veux les versionner.
+
+- `--name init` : Nom de la migration, ici "init".
+
+### 🚀 "migrate:deploy": "prisma migrate deploy"
+
+- **Fonction** : Applique les migrations déjà générées à une base de données (prod, staging, etc.).
+
+- **Utilité** : Pour déployer les changements de schéma sans re-générer de migrations (ex : CI/CD).
+
+- **À utiliser sur** : environnements de production/staging, jamais sur dev local.
+
+### 🔁 "migrate:reset": "prisma migrate reset --force"
+
+- **Fonction** : Réinitialise la base de données :
+
+  - Supprime toutes les tables
+
+  - Réexécute toutes les migrations
+
+  - Réexécute les seeds (si configuré)
+
+- **Utilité** : Parfait pour dev local quand tu veux une DB clean.
+
+- `--force` : Bypasse les confirmations (utile en script ou CI).
+
+### 📤 "db-push": "prisma db push"
+
+- **Fonction** : Applique les changements de schema.prisma à la base de données sans migration.
+
+- **Utilité** :
+
+  - Rapidité en dev local
+
+  - Pas de versioning, donc à éviter en production
+
+- **À utiliser pour** : prototypage, POC, ou si tu veux juste "synchroniser vite" le schéma.
+
+### 🧑‍🎨 "studio": "prisma studio"
+
+- **Fonction** : Lance une UI web pour explorer et modifier ta base de données.
+
+- **Utilité** : Très pratique pour vérifier ou modifier des données manuellement.
+
+# MySql
+
+## local docker info
+
+| Service    | URL                     | Login info                         |
 | ---------- | ----------------------- | ---------------------------------- |
 | MySQL      | `localhost:3306`        | user: `myuser`, pass: `mypassword` |
 | phpMyAdmin | `http://localhost:8080` | user: `root`, pass: `rootpassword` |
 
-
 # Prisma
+
 ## Set up prisma
+
 Set up your Prisma ORM project by creating your Prisma Schema file with the following command:
 
 ```sh
@@ -244,9 +320,10 @@ npx prisma init --datasource-provider mysql --output ../generated/prisma
 ```
 
 Génération du prisma client
+
 ```sh
  pnpm nx prisma-generate shared-prisma
- ```
+```
 
 ### 📄 Prisma Schema Example (shared/prisma/schema.prisma)
 
@@ -339,6 +416,70 @@ model Review {
 }
 ```
 
+# Shad-cn UI
+
+Pour ajouter des compnents shad-cn, on vas dans le dossier `libs/shared/shared-ui`
+
+```sh
+cd libs/shared/shared-ui
+```
+
+Puis on ajoute les components
+
+```sh
+pnpm dlx shadcn@latest add button
+```
+
+on devrais avoir dans libs/shared/shared-ui/components/ui le fichier **button.tsx**
+
+```css
+libs/
+└── shared/
+    └── shared-ui/
+        └── src/
+            └── components/
+                └── ui/
+                    ├── button.tsx
+                    └── ...
+```
+
+Puis dans index.ts, on exporte les components
+
+```ts
+export * from './components/ui/button';
+```
+
+Pour l'utiliser dans les front, il faut s'assurer des configurations du `tsconfig.*.json`
+
+- Il faut includer le chemin contenant la librairie, et enlever `paths, outDir, tsBuildInfoFile` s'ils existent
+
+```diff
+{
+  ...
+-  "paths": {
+-    "@/*": [
+-      "./src/*"
+-    ]
+-  },
+-  "outDir": "dist",
+-  "rootDir": "src",
+-  "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
+  ...
+}
+...
+"include": [
+    ...
++    "../../../libs/**/*.ts",
++    "../../../libs/**/*.tsx"
++  ],
+```
+
+- Pour l'importation dans les autres front
+
+```ts
+// apps/front-end/admin/src/app/page.tsx
+import { Button } from '@my-relax-app/shared-ui';
+```
 
 # TODO list
 
@@ -351,6 +492,7 @@ Monorepo managed by Nx.
 - [x] Setup Skaffold and Helm for deployments
 
 ## DB
+
 - [x] Modeling database schema
 
 ## Services
@@ -402,16 +544,16 @@ Monorepo managed by Nx.
 - [ ] Handle payment sessions and success/failure callbacks
 
 ### Notifications Service
+
 - [ ] Créer `apps/notifications` (NestJS microservice)
 - [ ] Configurer transport RabbitMQ ou NATS
 - [ ] Implémenter `EventPattern` pour :
-    - `reservation.created`
-    - `payment.completed`
-    - `user.registered`
+  - `reservation.created`
+  - `payment.completed`
+  - `user.registered`
 - [ ] Intégrer **Nodemailer** + templating (Handlebars/EJS)
 - [ ] Intégrer SMS (Twilio) et Push (Firebase)
 - [ ] Stocker l’historique des notifications (table `notifications`)
-
 
 ## Frontends
 
@@ -456,4 +598,6 @@ Monorepo managed by Nx.
 - [ ] Add E2E tests (Cypress/Playwright)
 - [ ] Add Unit tests (Jest)
 
+```
 
+```

@@ -8,11 +8,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
@@ -22,17 +18,7 @@
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
-    "types": [
-      "jest",
-      "node"
-    ],
-    "outDir": "dist",
-    "rootDir": "."
+    "types": ["jest", "node"]
   },
   "include": [
     "../../../apps/front-end/auth-app/.next/types/**/*.ts",
@@ -42,7 +28,9 @@
     "app/**/*.ts",
     "app/**/*.tsx",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "../../../libs/**/*.ts",
+    "../../../libs/**/*.tsx"
   ],
   "exclude": [
     "out-tsc",

@@ -1,3 +1,5 @@
+import { Button } from '@my-relax-app/shared-ui';
+
 export default function Index() {
   /*
    * Replace the elements below with your own.
@@ -9,6 +11,7 @@ export default function Index() {
       <div className="wrapper">
         <div className="container">
           <div id="welcome">
+            <Button>Test shadcn</Button>
             <h1>
               <span> Hello there, </span>
               Welcome @my-relax-app/admin 👋
