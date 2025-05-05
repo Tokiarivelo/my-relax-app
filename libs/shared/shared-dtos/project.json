@@ -1,0 +1,7 @@
+{
+  "targets": {
+    "codegen": {
+      "command": "npx graphql-codegen --config libs/shared/shared-dtos/codegen.yml"
+    }
+  }
+}

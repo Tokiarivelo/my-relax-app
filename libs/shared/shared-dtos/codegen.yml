@@ -1,14 +1,20 @@
 overwrite: true
-schema: http://localhost:4000/graphql   # ton endpoint Gateway
+schema: 
+  - "apps/services/auth/schema.graphql"
 generates:
   /src/lib/dtos.ts:
     plugins:
       - typescript
       - typescript-operations
-      - typescript-class-validator
+      - typescript-validation-schema # specify to use this plugin
     config:
-      # génère des classes avec décorateurs class-validator
-      classValidator: true
+      strictScalars: true
+      # Overrides built-in ID scalar to both input and output types as string.
+      # see: https://the-guild.dev/graphql/codegen/plugins/typescript/typescript#scalars
+      scalars:
+        ID: string
+      # You can also write the config for this plugin together
+      schema: zod # or zod
       # transforme les noms comme CreateUserInput → CreateUserDto
       namingConvention:
         typeNames: pascal-case#pascalCase

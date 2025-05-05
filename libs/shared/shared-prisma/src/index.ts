@@ -1,1 +1,1 @@
-export * from './lib/shared-prisma.module';
+export * from './lib/prisma.module';

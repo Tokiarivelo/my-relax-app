@@ -1,0 +1,53 @@
+Project RelaxPlace {
+  database_type: "PostgreSQL"
+  Note: "Modèle ERD de la plateforme RelaxPlace"
+}
+
+Table users {
+  id uuid [pk]
+  email varchar [unique, not null]
+  password varchar
+  role varchar [not null, note: "CUSTOMER | PROVIDER | ADMIN"]
+  created_at timestamp
+}
+
+Table places {
+  id uuid [pk]
+  title varchar
+  description text
+  location varchar [note: "latitude,longitude ou géométrie PostGIS"]
+  address varchar
+  price_per_hour numeric
+  category varchar
+  tags text [note: "Stocké sous forme de tableau ou texte séparé"]
+  provider_id uuid [ref: > users.id]
+  created_at timestamp
+}
+
+Table reservations {
+  id uuid [pk]
+  user_id uuid [ref: > users.id]
+  place_id uuid [ref: > places.id]
+  start_time timestamp
+  end_time timestamp
+  status varchar [note: "PENDING | CONFIRMED | CANCELLED"]
+  created_at timestamp
+}
+
+Table reviews {
+  id uuid [pk]
+  user_id uuid [ref: > users.id]
+  place_id uuid [ref: > places.id]
+  rating int
+  comment text
+  created_at timestamp
+}
+
+Table payments {
+  id uuid [pk]
+  reservation_id uuid [ref: > reservations.id]
+  amount numeric
+  status varchar [note: "PENDING | PAID | FAILED"]
+  method varchar [note: "CARD | PAYPAL | QR"]
+  paid_at timestamp
+}

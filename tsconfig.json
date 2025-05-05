@@ -101,6 +101,9 @@
     },
     {
       "path": "./apps/front-end/auth-app"
+    },
+    {
+      "path": "./libs/shared/zod-schemas"
     }
   ]
 }

@@ -23,8 +23,7 @@
     "studio": "prisma studio"
   },
   "dependencies": {
-    "tslib": "^2.3.0",
-    "@nestjs/common": "^10.0.0"
+    "tslib": "^2.3.0"
   },
   "nx": {
     "targets": {
