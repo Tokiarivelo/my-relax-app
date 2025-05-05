@@ -90,7 +90,7 @@ And join the Nx community:
 
 # Structure globale du projet
 
-```sh
+```css
 my-relax-app/
 │
 ├── apps/
@@ -437,10 +437,12 @@ libs/
 └── shared/
     └── shared-ui/
         └── src/
-            └── components/
-                └── ui/
-                    ├── button.tsx
-                    └── ...
+            ├── components/
+            |   └── ui/
+            |       ├── button.tsx
+            |       └── ...
+            |
+            └─── index.ts
 ```
 
 Puis dans index.ts, on exporte les components
@@ -471,7 +473,24 @@ Pour l'utiliser dans les front, il faut s'assurer des configurations du `tsconfi
     ...
 +    "../../../libs/**/*.ts",
 +    "../../../libs/**/*.tsx"
-+  ],
+  ],
+```
+
+- Il faut aussi inclure les libs partagés dans le `tsconfig.base.json` dans la racine du projet
+  _ex_:
+
+```json
+{
+  ...
+  "paths": {
+      ...
+      "@my-relax-app/shared-ui": ["libs/shared/shared-ui/src/index.ts"],
+      "@my-relax-app/shared-prisma": ["libs/shared/shared-prisma/src/index.ts"]
+      ...
+  }
+  ...
+}
+
 ```
 
 - Pour l'importation dans les autres front
