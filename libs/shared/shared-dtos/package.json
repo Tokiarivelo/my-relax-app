@@ -19,6 +19,9 @@
     }
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "@nestjs/graphql": "^13.1.0",
+    "class-validator": "^0.14.0",
+    "reflect-metadata": "^0.1.13"
   }
 }

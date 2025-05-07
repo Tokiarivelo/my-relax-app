@@ -1,8 +1,6 @@
-type Set {
-  id: Int!
-  name: String
-  year: Int
-  numParts: Int
+type User {
+  id: ID!
+  email: String
 }
 
 type Query {

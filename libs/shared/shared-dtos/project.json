@@ -1,7 +1,17 @@
 {
   "targets": {
     "codegen": {
-      "command": "npx graphql-codegen --config libs/shared/shared-dtos/codegen.yml"
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "graphql-codegen --config libs/shared/shared-dtos/codegen.yml --verbose"
+          }
+        ],
+        "cwd": ".",
+        "parallel": false,
+        "showOutput": "always"
+      }
     }
   }
 }

@@ -1,8 +1,18 @@
 overwrite: true
-schema: 
-  - "apps/services/auth/schema.graphql"
+schema:
+  - 'apps/services/auth/schema.graphql'
+
+# On pointe ici vers tous les fichiers .graphql ou .ts/.tsx
+# qui contiennent des opérations GraphQL
+documents:
+  - 'apps/**/src/**/*.{graphql,ts,tsx}'
+  - 'apps/**/src/**/*.{graphql,ts,tsx}'
+  - 'apps/**/*.{graphql,ts,tsx}'
+  - 'libs/**/src/**/*.{graphql,ts,tsx}'
+
 generates:
-  /src/lib/dtos.ts:
+  # 1) Types partagés (inputs/outputs)
+  libs/shared/shared-dtos/src/lib/generated/graphql-types.ts:
     plugins:
       - typescript
       - typescript-operations
@@ -16,6 +26,24 @@ generates:
       # You can also write the config for this plugin together
       schema: zod # or zod
       # transforme les noms comme CreateUserInput → CreateUserDto
+      withHooks: true
       namingConvention:
         typeNames: pascal-case#pascalCase
         inputTypeSuffix: Dto
+
+  # 2) Hooks React Apollo
+  libs/shared/shared-dtos/src/lib/generated/react-hooks.tsx:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHooks: true # génère useQuery/useMutation…
+      withRefetchFn: true
+      reactApolloVersion: 3 # ou 4 selon ta version
+      withHOC: false
+      withComponent: false
+
+hooks:
+  afterAllFileWrite:
+    - prettier --write

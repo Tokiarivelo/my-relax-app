@@ -14,13 +14,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Table for roles, to support many-to-many with users
+model Role {
+  id    String  @id @default(uuid())
+  name  String  @unique
+  users User[]  @relation("UserRoles")
+}
 
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
+  firstName String
+  lastName  String?
+  phone     String?
+  username  String   @unique
   password  String
-  role      String
   isVerified Boolean @default(false)
+  tokens    RefreshToken[]
   images    UserImage[]
   reservations Reservation[]
   reviews   Review[]
@@ -28,6 +38,16 @@ model User {
   updatedAt DateTime @updatedAt
   Payment Payment[]
   Place Place[]
+  Role Role[] @relation("UserRoles")
+}
+
+model RefreshToken {
+  id         String   @id @default(uuid())
+  token      String   @unique
+  expiresAt  DateTime
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  createdAt  DateTime @default(now())
 }
 
 model UserImage {
@@ -103,4 +123,19 @@ model Review {
   comment   String
   rating    Int
   createdAt DateTime @default(now())
+}
+
+generator nestgraphql {
+  prismaClientImport = "../generated/prisma" // chemin relatif vers prisma
+  provider = "prisma-nestjs-graphql"     // le plugin
+  output   = "../src/generated-dto"  // chemin relatif vers ton lib Nx
+
+  // options facultatives
+  // pour générer à la fois les @ObjectType, @InputType et @ArgsType
+  emitInputAndArgsTypes = true
+  // pour ajouter automatiquement les métadonnées @Field, @ObjectType…
+  emitGraphQLTypes = true
+  // suffixes des classes générées
+  dtoModelNameSuffix = "Model"
+  dtoInputNameSuffix = "Input"
 }

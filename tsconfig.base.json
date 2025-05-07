@@ -20,9 +20,9 @@
     "declaration": true,
     "baseUrl": ".",
     "paths": {
+      "@my-relax-app/shared-dtos": ["libs/shared/shared-dtos/src/index.ts"],
       "@my-relax-app/shared-prisma": ["libs/shared/shared-prisma/src/index.ts"],
-      "@my-relax-app/shared-ui": ["libs/shared/shared-ui/src/index.ts"],
-      "@my-relax-app/shared-dtos": ["libs/shared/shared-ui/src/index.ts"]
+      "@my-relax-app/shared-ui": ["libs/shared/shared-ui/src/index.ts"]
     }
   }
 }
