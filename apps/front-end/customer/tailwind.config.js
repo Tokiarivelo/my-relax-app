@@ -1,5 +1,4 @@
 // const { createGlobPatternsForDependencies } = require('@nx/next/tailwind');
-
 // The above utility import will not work if you are using Next.js' --turbo.
 // Instead you will have to manually add the dependent paths to be included.
 // For example
