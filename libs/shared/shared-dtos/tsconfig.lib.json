@@ -4,6 +4,10 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "emitDeclarationOnly": false,
+    "baseUrl": ".",
+    "outDir": "dist",
+    "rootDir": "./src",
+    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
     "forceConsistentCasingInFileNames": true,
     "types": ["node"],
     "target": "es2021",
@@ -13,5 +17,9 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src/**/*.ts"],
-  "references": []
+  "references": [
+    {
+      "path": "../shared-prisma/tsconfig.lib.json"
+    }
+  ]
 }

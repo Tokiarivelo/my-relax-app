@@ -126,10 +126,9 @@ model Review {
 }
 
 generator nestgraphql {
-  prismaClientImport = "../generated/prisma" // chemin relatif vers prisma
+  prismaClientImport = "@my-relax-app/shared-prisma" // chemin relatif vers prisma
   provider = "prisma-nestjs-graphql"     // le plugin
-  output   = "../src/generated-dto"  // chemin relatif vers ton lib Nx
-
+  output   = "../../shared-dtos/src/lib/dtos"  // chemin relatif vers DTOs
   // options facultatives
   // pour générer à la fois les @ObjectType, @InputType et @ArgsType
   emitInputAndArgsTypes = true

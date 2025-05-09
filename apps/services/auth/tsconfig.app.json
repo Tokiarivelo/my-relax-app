@@ -7,7 +7,11 @@
     "emitDecoratorMetadata": true,
     "target": "es2021"
   },
-  "include": ["src/**/*.ts", "../../../libs/**/*.ts", "../../../libs/**/*.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "../../../libs/shared/shared-prisma/**/*.ts",
+    "../../../libs/shared/shared-dtos/**/*.ts"
+  ],
   "exclude": [
     "out-tsc",
     "dist",
@@ -17,5 +21,13 @@
     "eslint.config.js",
     "eslint.config.cjs",
     "eslint.config.mjs"
+  ],
+  "references": [
+    {
+      "path": "../../../libs/shared/shared-prisma/tsconfig.lib.json"
+    },
+    {
+      "path": "../../../libs/shared/shared-dtos/tsconfig.lib.json"
+    }
   ]
 }

@@ -2,7 +2,6 @@
   "name": "@my-relax-app/shared-dtos",
   "version": "0.0.1",
   "private": true,
-  "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -20,8 +19,11 @@
   },
   "dependencies": {
     "tslib": "^2.3.0",
+    "reflect-metadata": "^0.1.13",
     "@nestjs/graphql": "^13.1.0",
-    "class-validator": "^0.14.0",
-    "reflect-metadata": "^0.1.13"
+    "class-validator": "^0.14.2",
+    "class-transformer": "^0.5.1",
+    "@my-relax-app/shared-prisma": "0.0.1",
+    "@nestjs/common": "^11.1.0"
   }
 }
